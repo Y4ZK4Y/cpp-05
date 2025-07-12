@@ -6,18 +6,19 @@
 /*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 10:26:40 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/11 15:35:33 by yasamankari      ###   ########.fr       */
+/*   Updated: 2025/07/11 20:50:53 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <string>
 #include <ostream>
-#include <exception>
+#include "Form.hpp" // or class Form; ?
+
 class Bureaucrat {
 private:
     const std::string name_;
-   int grade_; // unsigned int?
+   int grade_;
 
 public:
     Bureaucrat(const std::string& name, int grade);
@@ -42,8 +43,9 @@ public:
     int getGrade() const;
 
     void incrementGrade();
-    void decrementGrade(); 
+    void decrementGrade();
 
+    void signForm(Form& form);
 };
 
 // insertion operator overload - outputs the sam stream it has received
