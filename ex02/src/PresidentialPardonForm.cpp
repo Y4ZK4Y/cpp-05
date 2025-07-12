@@ -6,13 +6,14 @@
 /*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 12:57:01 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/12 13:37:51 by yasamankari      ###   ########.fr       */
+/*   Updated: 2025/07/12 13:52:52 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+#include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target): AForm("PresidentialPardonForm", 25, 5, target) {
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target): AForm("PresidentialPardonForm", 25, 5, target) { // does it need target_(target) ? 
     std::cout << "PresidentialPardonForm constructor called." << std::endl;
 }
 

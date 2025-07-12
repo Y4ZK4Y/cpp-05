@@ -6,7 +6,7 @@
 /*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 12:31:39 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/12 13:19:08 by yasamankari      ###   ########.fr       */
+/*   Updated: 2025/07/12 13:54:21 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
     std::cout << "ShrubberyCreationForm destructor called." << std::endl;
+    // close if open
 }
 
 static const char* asciiTree = "
@@ -56,5 +57,6 @@ void ShrubberyCreationForm::executeAction(const Bureaucrat& executor) const {
     }
     for (int i = 0; i < 3; i++)
         f << asciiTree;
-    f.close();
+        // flush() ?
+        
 }
