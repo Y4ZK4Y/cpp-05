@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 20:20:21 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/11 20:49:26 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   Form.cpp                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/11 20:20:21 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 11:40:30 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-Form::Form(const std::string& name, int gradeToSign, int gradeToExec): // are we missing ocnst ?
+Form::Form(const std::string& name, int gradeToSign, int gradeToExec): // are we missing const ?
     name_(name), signed_(false), gradeToSign_(gradeToSign), gradeToExec_(gradeToExec) {
     if (gradeToSign_ < 1 || gradeToExec_ < 1)
         throw GradeTooHighException();
