@@ -1,40 +1,104 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 10:25:55 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/11 14:26:29 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.cpp                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/11 10:25:55 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 12:39:38 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include <iostream>
 
+static void banner(const std::string& title)
+{
+    std::cout << "\n========== " << title << " ==========\n";
+}
+
 int main()
 {
-    try {
-        Bureaucrat bob("Bob", 3);
-        std::cout << bob << '\n';
-
-        bob.incrementGrade();  // 2
-        bob.incrementGrade();  // 1
-        std::cout << bob << '\n';
-
-        bob.incrementGrade();  // boom
+    /* ------------------------------------------------------------------ */
+    banner("Valid construction & stream operator");
+    try
+    {
+        Bureaucrat alice("Alice", 42);
+        std::cout << alice << std::endl;
     }
-    catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << '\n';
+    catch (const std::exception& e)
+    {
+        std::cerr << "Unexpected exception: " << e.what() << std::endl;
     }
 
-    try {
-        Bureaucrat bad("Bad", 151);      // constructor throws
+    /* ------------------------------------------------------------------ */
+    banner("Constructor range checks");
+    try
+    {
+        Bureaucrat zero("Zero", 0);          // too high
     }
-    catch (const std::exception& e) {
-        std::cerr << "Ctor error: " << e.what() << '\n';
+    catch (const std::exception& e)
+    {
+        std::cerr << "Caught: " << e.what() << std::endl;
     }
+
+    try
+    {
+        Bureaucrat over("Over", 151);        // too low
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Caught: " << e.what() << std::endl;
+    }
+
+    /* ------------------------------------------------------------------ */
+    banner("Increment boundary (2 → 1 then fail)");
+    try
+    {
+        Bureaucrat bob("Bob", 2);
+        bob.incrementGrade();                // now 1
+        std::cout << bob << std::endl;
+        bob.incrementGrade();                // should throw
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Caught: " << e.what() << std::endl;
+    }
+
+    /* ------------------------------------------------------------------ */
+    banner("Decrement boundary (149 → 150 then fail)");
+    try
+    {
+        Bureaucrat carl("Carl", 149);
+        carl.decrementGrade();               // now 150
+        std::cout << carl << std::endl;
+        carl.decrementGrade();               // should throw
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Caught: " << e.what() << std::endl;
+    }
+
+    /* ------------------------------------------------------------------ */
+    banner("Copy constructor & assignment operator");
+    try
+    {
+        Bureaucrat don("Don", 10);
+        Bureaucrat copy(don);                // copy ctor
+        Bureaucrat ed("Ed", 50);
+        ed = don;                            // assignment
+        std::cout << "Original: " << don
+                  << " | Copy: " << copy
+                  << " | Assigned: " << ed << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Unexpected exception: " << e.what() << std::endl;
+    }
+
+    banner("All tests finished");
+    return 0;
 }
 
 
@@ -44,7 +108,6 @@ throwing and catching exceptions
 std::exception
 what classes can skip OCF? state holding classes cannot 
 const-correctness ?
-
 */
 
 /*

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 12:38:50 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/12 13:51:14 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   PresidentialPardonForm.hpp                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/12 12:38:50 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 16:40:57 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ class PresidentialPardonForm: public AForm {
 public:
     explicit PresidentialPardonForm(const std::string& target);
     PresidentialPardonForm(const PresidentialPardonForm& other);
-    PresidentialPardonForm& operator=(const PresidentialPardonForm& other); // = delete ?
-    ~PresidentialPardonForm(); // override keyword or not ?
+    PresidentialPardonForm& operator=(const PresidentialPardonForm& rhs);
+    ~PresidentialPardonForm();
 
-    void executeAction() const; // overrides
+    void executeAction() const override;
 };
 
 

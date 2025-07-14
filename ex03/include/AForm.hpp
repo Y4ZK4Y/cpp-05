@@ -6,7 +6,7 @@
 /*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/11 15:24:03 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 11:46:58 by ykarimi       ########   odam.nl         */
+/*   Updated: 2025/07/14 16:30:21 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <ostream>
 #include <exception>
 
-class Bureaucrat; // forward declaration
+class Bureaucrat;
 
 class AForm {
 
@@ -28,7 +28,7 @@ private:
     const std::string   target_;
 
 public:
-    AForm(const std::string& name, int gradeToSign, int gradeToExec, std::string target); // string& or string ? 
+    AForm(const std::string& name, int gradeToSign, int gradeToExec, std::string& target);
     AForm(const AForm& other);
     AForm& operator=(const AForm& other);
     virtual ~AForm();
@@ -52,14 +52,15 @@ public:
     const std::string&  getName()           const;
     int                 getGradeToSign()    const;
     int                 getGradeToExec()    const;
+    const std::string&  getTarget()         const;
     bool                isSigned()          const;
-    const std::string& getTarget()          const;
 
-    void                beSigned(const Bureaucrat& b); // why const?
+    void                beSigned(const Bureaucrat& b);
     void                execute(Bureaucrat const& executor) const;
 
     /* Pure virtual hook */
-    virtual void executeAction(const Bureaucrat& executor) const = 0;
+    virtual void        executeAction(const Bureaucrat& executor) const = 0;
 
 };
+
 std::ostream& operator<<(std::ostream& os, const AForm& f);

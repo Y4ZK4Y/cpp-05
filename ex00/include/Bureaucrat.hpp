@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 10:26:40 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/11 15:35:33 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   Bureaucrat.hpp                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/11 10:26:40 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 12:25:28 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,39 @@
 #include <string>
 #include <ostream>
 #include <exception>
+
 class Bureaucrat {
+
 private:
-    const std::string name_;
-   int grade_; // unsigned int?
+    const std::string   name_;
+    int                 grade_;
 
 public:
     Bureaucrat(const std::string& name, int grade);
     Bureaucrat(const Bureaucrat& other);
-    Bureaucrat& operator=(const Bureaucrat& other);
+    Bureaucrat& operator=(const Bureaucrat& rhs);
     ~Bureaucrat();
 
-    /* Exception types */
+    /* Exception */
     class GradeTooHighException: public std::exception {
         public:
-            // Exception specification – promises this function itself will never throw. If it did throw while another exception is already propagating, the program would call std::terminate(). Marking it noexcept (C++11+) makes that guarantee explicit and lets the compiler optimize.
-            //Compile-time check – tells the compiler: “I intend to override a virtual function from a base class.” If you mistype the signature (e.g., char* what()), the compiler errors out instead of silently creating a new unrelated method.
-            
-            const char* what() const noexcept override; // or  const char* what() const throw() ?
+            // Exception specification – promises this function itself will never throw. If it did throw while another exception is already propagating, the program would call std::terminate().
+            //Marking it noexcept (C++11+) makes that guarantee explicit and lets the compiler optimize.
+            //Compile-time check – tells the compiler: “I intend to override a virtual function from a base class.”
+            //If you mistype the signature (e.g., char* what()),
+            //the compiler errors out instead of silently creating a new unrelated method.
+            const char* what() const noexcept override; // or  const char* what() const throw() ? (older version - depricated )
     };
     class GradeTooLowException: public std::exception {
         public:
             const char* what() const noexcept override;
     };
     
-    const std::string& getName() const;
-    int getGrade() const;
+    const std::string&  getName()   const;
+    int                 getGrade()  const;
 
-    void incrementGrade();
-    void decrementGrade(); 
-
+    void                incrementGrade(); // grade-- higher rank
+    void                decrementGrade(); // grade++ lower rank
 };
 
 // insertion operator overload - outputs the sam stream it has received
@@ -95,4 +98,12 @@ Use override — the compiler will force the signature to match and save you fro
 
 
 
+*/
+
+/*
+if private std::string name is std::string& name instead; it 
+revents default‑constructibility.
+• It complicates copy‑assignment (you can’t rebind a reference).
+• Adds indirection (one extra pointer). 
+better std::string name
 */

@@ -6,7 +6,7 @@
 /*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/12 12:39:09 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 10:14:30 by ykarimi       ########   odam.nl         */
+/*   Updated: 2025/07/14 16:41:07 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ class RobotomyRequestForm: public AForm {
 public:
     explicit RobotomyRequestForm(std::string& target);
     RobotomyRequestForm(const RobotomyRequestForm& other);
-    RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+    RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
     ~RobotomyRequestForm();
 
-    void executeAction() const;
+    void executeAction() const override;
 };
 
 /*

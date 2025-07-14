@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   AForm.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 15:24:03 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/12 12:53:43 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   AForm.hpp                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/11 15:24:03 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 17:13:01 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include <string>
 #include <ostream>
-#include <exception>
+//#include <exception>
 
-class Bureaucrat; // forward declaration
+class Bureaucrat;
 
 class AForm {
 
@@ -28,17 +28,29 @@ private:
     const std::string   target_;
 
 public:
-    AForm(const std::string& name, int gradeToSign, int gradeToExec, std::string target); // string& or string ? 
+    AForm(const std::string& name, int gradeToSign,
+        int gradeToExec, const std::string& target); 
     AForm(const AForm& other);
-    AForm& operator=(const AForm& other);
+    AForm& operator=(const AForm& rhs);
     virtual ~AForm();
 
-    /* Exception types */
+    /* Getters */
+    const std::string&  getName()           const;
+    int                 getGradeToSign()    const;
+    int                 getGradeToExec()    const;
+    const std::string&  getTarget()         const;
+    bool                isSigned()          const;
+
+    void                beSigned(const Bureaucrat& b);
+    void                execute(const Bureaucrat& executor) const; // a template
+
+    virtual void        executeAction() const = 0; // implemented in derived classes - hook
+
+    /* Exception */
     class GradeTooHighException: public std::exception {
     public:
         const char* what() const noexcept override;
     };
-    
     class GradeTooLowException: public std::exception {
     public:
         const char* what() const noexcept override;    
@@ -47,24 +59,13 @@ public:
         public:
             const char* what() const noexcept override;
     };
-
-    /* Getters */
-    const std::string&  getName()           const;
-    int                 getGradeToSign()    const;
-    int                 getGradeToExec()    const;
-    bool                isSigned()          const;
-    const std::string& getTarget()          const;
-
-    void                beSigned(const Bureaucrat& b); // why const?
-    void                execute(Bureaucrat const& executor) const;
-
-    /* Pure virtual hook */
-    virtual void executeAction() const = 0;
-
 };
+
 std::ostream& operator<<(std::ostream& os, const AForm& f);
 
+
 /*
-Form.hpp will be an abstracht class in this exercise
-check in the base class in the base class
+circular dependancy
+how it happens ? example
+
 */

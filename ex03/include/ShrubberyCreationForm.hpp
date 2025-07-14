@@ -6,7 +6,7 @@
 /*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/07/12 12:32:06 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 11:47:05 by ykarimi       ########   odam.nl         */
+/*   Updated: 2025/07/14 16:41:13 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class ShrubberyCreationForm: public AForm {
 public:
     explicit ShrubberyCreationForm(const std::string& target);
     ShrubberyCreationForm(const ShrubberyCreationForm& other);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+    ShrubberyCreationForm& operator=(const ShrubberyCreationForm& rhs);
     ~ShrubberyCreationForm();
 
     void executeAction(const Bureaucrat& executor) const override;

@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX     := c++
-CXXFLAGS:= -Wall -Werror -std=c++17 -g -fsanitize=address -Wpedantic -Wextra
+CXXFLAGS:= -Wall -Werror -Wextra -std=c++17 -g -fsanitize=address -Wpedantic
 
 # Project name
 NAME    := bureaucrat1
@@ -10,7 +10,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 INC_DIR := include
 
-# Find all .cpp files in src/ and subdirectories
+
 SRCS    := $(shell find $(SRC_DIR) -name '*.cpp')
 OBJS    := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 

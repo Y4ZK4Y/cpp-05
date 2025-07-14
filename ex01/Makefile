@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX     := c++
-CXXFLAGS:= -Wall -Werror -std=c++17 -g -fsanitize=address -Wpedantic -Wextra
+CXXFLAGS:= -Wall -Werror -Wextra -std=c++17 -g -fsanitize=address -Wpedantic
 
 # Project name
 NAME    := bureaucrat2

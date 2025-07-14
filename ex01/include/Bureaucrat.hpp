@@ -1,51 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 10:26:40 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/11 20:50:53 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   Bureaucrat.hpp                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/11 10:26:40 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 13:07:09 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <string>
 #include <ostream>
-#include "Form.hpp" // or class Form; ?
+#include <exception>
+
+class Form;
 
 class Bureaucrat {
 private:
-    const std::string name_;
-   int grade_;
+    const std::string   name_;
+    int                 grade_;
 
 public:
     Bureaucrat(const std::string& name, int grade);
     Bureaucrat(const Bureaucrat& other);
-    Bureaucrat& operator=(const Bureaucrat& other);
+    Bureaucrat& operator=(const Bureaucrat& rhs);
     ~Bureaucrat();
 
     /* Exception types */
     class GradeTooHighException: public std::exception {
         public:
-            // Exception specification – promises this function itself will never throw. If it did throw while another exception is already propagating, the program would call std::terminate(). Marking it noexcept (C++11+) makes that guarantee explicit and lets the compiler optimize.
-            //Compile-time check – tells the compiler: “I intend to override a virtual function from a base class.” If you mistype the signature (e.g., char* what()), the compiler errors out instead of silently creating a new unrelated method.
-            
-            const char* what() const noexcept override; // or  const char* what() const throw() ?
+            const char* what() const noexcept override;
     };
     class GradeTooLowException: public std::exception {
         public:
             const char* what() const noexcept override;
     };
     
-    const std::string& getName() const;
-    int getGrade() const;
+    const std::string&  getName()   const;
+    int                 getGrade()  const;
 
-    void incrementGrade();
-    void decrementGrade();
+    void                incrementGrade();
+    void                decrementGrade();
 
-    void signForm(Form& form);
+    void                signForm(Form& form);
 };
 
 // insertion operator overload - outputs the sam stream it has received

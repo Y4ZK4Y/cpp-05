@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/11 10:25:55 by yasamankari       #+#    #+#             */
-/*   Updated: 2025/07/11 20:50:28 by yasamankari      ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.cpp                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/07/11 10:25:55 by yasamankari   #+#    #+#                 */
+/*   Updated: 2025/07/14 13:16:56 by ykarimi       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,70 @@
 #include "Form.hpp"
 #include <iostream>
 
-void separator(const std::string& title) {
-    std::cout << "\n====== " << title << " ======\n";
+static void banner(const std::string& title)
+{
+    std::cout << "\n========== " << title << " ==========\n";
 }
 
-int main() {
-    separator("Valid Form Signing");
-
-    try {
+int main()
+{
+    /* ------------------------------------------------------------------ */
+    banner("1. Valid Bureaucrat & Form creation, operator<<");
+    try
+    {
         Bureaucrat alice("Alice", 42);
-        Form formA("FormA", 50, 30); // Alice is strong enough to sign (42 ≤ 50)
+        Form       shrub("ShrubForm", 50, 25);
 
-        std::cout << alice << '\n';
-        std::cout << formA << '\n';
-
-        alice.signForm(formA);
-
-        std::cout << formA << '\n';
-    } catch (const std::exception& e) {
-        std::cerr << "Unexpected exception: " << e.what() << '\n';
+        std::cout << alice << std::endl;
+        std::cout << shrub << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Unexpected exception: " << e.what() << std::endl;
     }
 
-    separator("Invalid Signing Attempt");
+    /* ------------------------------------------------------------------ */
+    banner("2. Form constructor range checks");
+    try { Form badHigh("BadHigh", 0, 30); }
+    catch (const std::exception& e) { std::cerr << "Caught: " << e.what() << std::endl; }
 
-    try {
-        Bureaucrat bob("Bob", 100);
-        Form formB("FormB", 50, 20); // Bob is too weak to sign (100 > 50)
+    try { Form badLow("BadLow", 151, 30); }
+    catch (const std::exception& e) { std::cerr << "Caught: " << e.what() << std::endl; }
 
-        std::cout << bob << '\n';
-        std::cout << formB << '\n';
+    /* ------------------------------------------------------------------ */
+    banner("3. Signing attempts: failure then success");
+    Bureaucrat mid("Mid", 100);             // too low to sign sign‑grade 50
+    Bureaucrat high("High", 1);             // can sign anything
+    Form shrub("ShrubForm", 50, 25);
 
-        bob.signForm(formB); // should fail gracefully
+    mid.signForm(shrub);    // should fail
+    high.signForm(shrub);   // should succeed
+    std::cout << shrub << std::endl;
 
-        std::cout << formB << '\n'; // still not signed
-    } catch (const std::exception& e) {
-        std::cerr << "Unexpected exception: " << e.what() << '\n';
+    /* ------------------------------------------------------------------ */
+    banner("4. Increment / decrement boundaries");
+    try
+    {
+        Bureaucrat b("Bob", 2);
+        b.incrementGrade();               // grade becomes 1
+        std::cout << b << std::endl;
+        b.incrementGrade();               // should throw (too high)
     }
+    catch (const std::exception& e) { std::cerr << "Caught: " << e.what() << std::endl; }
 
-    separator("Invalid Form Creation");
-
-    try {
-        Form badForm("TooHigh", 0, 30); // gradeToSign = 0 → too high
-    } catch (const std::exception& e) {
-        std::cerr << "Caught expected exception: " << e.what() << '\n';
+    try
+    {
+        Bureaucrat c("Carl", 149);
+        c.decrementGrade();               // grade becomes 150
+        std::cout << c << std::endl;
+        c.decrementGrade();               // should throw (too low)
     }
+    catch (const std::exception& e) { std::cerr << "Caught: " << e.what() << std::endl; }
 
-    try {
-        Form badForm("TooLow", 151, 30); // gradeToSign = 151 → too low
-    } catch (const std::exception& e) {
-        std::cerr << "Caught expected exception: " << e.what() << '\n';
-    }
-
-    separator("Already Signed Form");
-
-    try {
-        Bureaucrat carol("Carol", 10);
-        Form formC("FormC", 20, 10);
-
-        carol.signForm(formC);  // success
-        carol.signForm(formC);  // redundant; should not throw, might print same line
-    } catch (const std::exception& e) {
-        std::cerr << "Unexpected exception: " << e.what() << '\n';
-    }
-
-    separator("All Tests Finished");
+    banner("All tests finished");
     return 0;
 }
+
 
 /*
 class-to-class collaboration
