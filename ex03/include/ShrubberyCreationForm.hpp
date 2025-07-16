@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ShrubberyCreationForm.hpp                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/12 12:32:06 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:41:13 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 12:32:06 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:07:29 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
     ShrubberyCreationForm& operator=(const ShrubberyCreationForm& rhs);
     ~ShrubberyCreationForm();
 
-    void executeAction(const Bureaucrat& executor) const override;
+    void execute(const Bureaucrat& executor) const override;
 };
 
 

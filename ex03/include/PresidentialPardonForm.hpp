@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   PresidentialPardonForm.hpp                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/12 12:38:50 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:40:57 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 12:38:50 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:07:00 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
     PresidentialPardonForm& operator=(const PresidentialPardonForm& rhs);
     ~PresidentialPardonForm();
 
-    void executeAction() const override;
+    void execute(const Bureaucrat& executor) const override;
 };
 
 

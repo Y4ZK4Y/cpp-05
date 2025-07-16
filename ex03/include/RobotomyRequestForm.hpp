@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   RobotomyRequestForm.hpp                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/12 12:39:09 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:41:07 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 12:39:09 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:07:11 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ public:
     RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
     ~RobotomyRequestForm();
 
-    void executeAction() const override;
+    void execute(const Bureaucrat& executor) const override;
 };
 
 /*

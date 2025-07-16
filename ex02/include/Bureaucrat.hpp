@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Bureaucrat.hpp                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/11 10:26:40 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 13:22:59 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/11 10:26:40 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:26:18 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <string>
 #include <ostream>
-#include "AForm.hpp"
+#include <exception>
+
+class AForm;
 
 class Bureaucrat {
 private:
@@ -43,6 +45,6 @@ public:
     void                decrementGrade();
 
     void                signForm(AForm& form);
-    void                executeForm(AForm const& form) const;
+    void                executeForm(const AForm& form) const;
 };
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);

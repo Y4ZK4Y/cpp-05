@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   RobotomyRequestForm.cpp                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/12 12:56:58 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:43:24 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 12:56:58 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:31:15 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 #include <iostream>
 
 RobotomyRequestForm::RobotomyRequestForm(std::string& target): AForm("RobotomyRequestForm", 72, 45, target) {
@@ -31,8 +32,12 @@ RobotomyRequestForm::~RobotomyRequestForm() {
     std::cout << "RobotomyRequestForm destructor called.\n";
 }
 
-void RobotomyRequestForm::executeAction() const {
-    // check for if signed
+void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
+    if (!isSigned())
+        throw NotSignedException();
+    else if (executor.getGrade() > getGradeToExec())
+        throw GradeTooLowException();
     std::cout << "DREEEEEEEE\n";
+    // rand thing
 
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   PresidentialPardonForm.cpp                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/12 12:57:01 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:43:42 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 12:57:01 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:16:12 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ PresidentialPardonForm::~PresidentialPardonForm() {
     std::cout << "PresidentialPardonForm destructor called.\n";
 }
 
-void PresidentialPardonForm::executeAction() const {
+void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
+    if (!isSigned())
+        throw NotSignedException();
+    else if (executor.getGrade() > getGradeToExec())
+        throw GradeTooLowException();
     std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox.\n";
 }

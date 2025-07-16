@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ShrubberyCreationForm.cpp                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/12 12:31:39 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:44:59 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/12 12:31:39 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:36:03 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -39,8 +40,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 static const char* asciiTree = "TREE";
 
-void ShrubberyCreationForm::executeAction(const Bureaucrat& executor) const {
-    // if nor signed throw excpetion
+void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
+    if (!isSigned())
+        throw NotSignedException();
+    else if (executor.getGrade() > getGradeToExec())
+        throw GradeTooLowException();
+
     std::ofstream f((getTarget() + "_shrubbery").c_str());
     if (!f) {
         std::cerr << "cant create file\n";
@@ -48,6 +53,5 @@ void ShrubberyCreationForm::executeAction(const Bureaucrat& executor) const {
     }
     for (int i = 0; i < 3; i++)
         f << asciiTree;
-        // flush() ?
         
 }

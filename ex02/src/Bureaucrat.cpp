@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Bureaucrat.cpp                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/11 10:43:34 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 17:01:18 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/11 10:43:34 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:23:18 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void Bureaucrat::signForm(AForm& form) {
     }
 }
 
-void Bureaucrat::executeForm(AForm const& form) const {
+void    Bureaucrat::executeForm(const AForm& form) const {
     try {
         form.execute(*this);
         std::cout << name_ << " executed " << form.getName()

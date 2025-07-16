@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   AForm.hpp                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: yasamankarimi <yasamankarimi@student.42      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/07/11 15:24:03 by yasamankari   #+#    #+#                 */
-/*   Updated: 2025/07/14 16:30:21 by ykarimi       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yasamankarimi <yasamankarimi@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/11 15:24:03 by yasamankari       #+#    #+#             */
+/*   Updated: 2025/07/14 21:34:29 by yasamankari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ private:
     const std::string   target_;
 
 public:
-    AForm(const std::string& name, int gradeToSign, int gradeToExec, std::string& target);
+    AForm(const std::string& name, int gradeToSign, int gradeToExec, const std::string& target);
     AForm(const AForm& other);
     AForm& operator=(const AForm& other);
     virtual ~AForm();
@@ -56,10 +56,7 @@ public:
     bool                isSigned()          const;
 
     void                beSigned(const Bureaucrat& b);
-    void                execute(Bureaucrat const& executor) const;
-
-    /* Pure virtual hook */
-    virtual void        executeAction(const Bureaucrat& executor) const = 0;
+    virtual void        execute(const Bureaucrat& executor) const = 0;
 
 };
 

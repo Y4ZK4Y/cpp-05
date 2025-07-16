@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-AForm::AForm(const std::string& name, int gradeToSign, int gradeToExec, std::string& target):
+AForm::AForm(const std::string& name, int gradeToSign, int gradeToExec, const std::string& target):
     name_(name), signed_(false), gradeToSign_(gradeToSign), gradeToExec_(gradeToExec),
     target_(target) {
     if (gradeToSign_ < 1 || gradeToExec_ < 1)
